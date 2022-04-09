@@ -13,12 +13,9 @@ public class interactableBase : MonoBehaviour
     public Camera GetMain { get { return main; } }
     public bool GetOnHover { get { return onHover; } set { onHover = value; } }
 
-    //For Grounded ->
-    public Collider triggerCollision;
     private bool isGrounded = true;
     private Rigidbody rb;
     public bool GetSetGrounded { get { return isGrounded; } set { isGrounded = value; } }
-    //Scriptable Object Data for all instance types->
     [SerializeField] private enum interactableType
     {
         pickup,
@@ -26,6 +23,12 @@ public class interactableBase : MonoBehaviour
         book,
     }
     [SerializeField] private interactableType type;
+
+    [Header("Book")]
+    public BookData Book_Data;
+    public bookUIDisplay UIBookDataDisplay;
+
+
     public void Awake()
     {
         main = Camera.main;
@@ -128,7 +131,11 @@ public abstract class interactable
 #region Interactable Derived
 public class Book : interactable
 {
-    public Book(interactableBase _baseInteractable) : base(_baseInteractable){}
+    public BookData data;
+    private bookUIDisplay bookUI = null;
+    public Book(interactableBase _baseInteractable) : base(_baseInteractable){
+        data = baseInteractable.Book_Data;
+    }
     public override void onEnter()
     {
         Debug.Log("Book Class Call Enter");
@@ -140,6 +147,13 @@ public class Book : interactable
     public override void onAction()
     {
         Debug.Log("Book Class Call Action");
+        if (bookUI == null)
+        {
+            //Instantiate the Canvas Element ---
+            bookUI = Object.Instantiate(baseInteractable.UIBookDataDisplay,GameController.controller.currentCanvas.transform.position, Quaternion.identity, GameController.controller.currentCanvas.transform);
+            bookUI.SetGetData = data;
+            bookUI.setUI();
+        }
     }
 
     public override void onExit()
@@ -147,6 +161,8 @@ public class Book : interactable
         targetPosition = null;
         baseInteractable.GetComponent<Collider>().enabled = true;
         baseInteractable.GetSetGrounded = false;
+        if (bookUI != null)
+            Object.Destroy(bookUI.gameObject);
         //RigidBody Needed
         Debug.Log("Book Class Call Exit");
     }

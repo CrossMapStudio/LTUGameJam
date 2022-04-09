@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2435131923968557019}
   - component: {fileID: 7023133930510339843}
   - component: {fileID: 764603789}
+  - component: {fileID: 821236217}
   m_Layer: 3
   m_Name: Book
   m_TagString: Untagged
@@ -93,11 +94,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5441278179204317289}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.13226794, y: 0.1, z: 0.20850128}
+  m_Center: {x: 0.001606524, y: 0.02, z: 0.00027697906}
 --- !u!114 &7023133930510339843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,8 +111,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26e1d43b3ca47704eb44028a56e08ac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: Book1
   type: 2
+  Book_Data: {fileID: 11400000, guid: ede7b728f56e907448aa398bcd8869c1, type: 2}
+  UIBookDataDisplay: {fileID: -3364348299880216126, guid: 70d90bef643f2ae4a96d45cceb1d9bed,
+    type: 3}
 --- !u!54 &764603789
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -121,10 +124,23 @@ Rigidbody:
   m_GameObject: {fileID: 5441278179204317289}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
+  m_Drag: 10
+  m_AngularDrag: 10
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 126
   m_CollisionDetection: 1
+--- !u!65 &821236217
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5441278179204317289}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.13226794, y: 0.017107813, z: 0.20850128}
+  m_Center: {x: 0.001606524, y: 0, z: 0.00027697906}

@@ -67,6 +67,11 @@ public class playerInteraction : MonoBehaviour
                 pickedUpItem = null;
             }
         }
+
+        if (Input.GetMouseButtonDown(1) && pickedUpItem != null)
+        {
+            pickedUpItem.GetInteractable.onAction();
+        }
     }
 
     public void FixedUpdate()
