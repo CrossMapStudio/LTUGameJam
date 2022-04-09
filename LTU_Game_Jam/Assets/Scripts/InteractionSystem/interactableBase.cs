@@ -9,7 +9,15 @@ public class interactableBase : MonoBehaviour
     private interactable interactableObject;
     public interactable GetInteractable { get { return interactableObject; } }
     private bool onHover;
+    private Camera main;
+    public Camera GetMain { get { return main; } }
     public bool GetOnHover { get { return onHover; } set { onHover = value; } }
+
+    //For Grounded ->
+    public Collider triggerCollision;
+    private bool isGrounded = true;
+    private Rigidbody rb;
+    public bool GetSetGrounded { get { return isGrounded; } set { isGrounded = value; } }
     //Scriptable Object Data for all instance types->
     [SerializeField] private enum interactableType
     {
@@ -20,7 +28,9 @@ public class interactableBase : MonoBehaviour
     [SerializeField] private interactableType type;
     public void Awake()
     {
+        main = Camera.main;
         renderer = GetComponent<MeshRenderer>();
+        rb = GetComponent<Rigidbody>();
         renderer.material.color = Color.blue;
         switch (type)
         {
@@ -46,6 +56,29 @@ public class interactableBase : MonoBehaviour
         {
             renderer.material.color = Color.white;
         }
+
+        interactableObject.onUpdate();
+    }
+
+    public void FixedUpdate()
+    {
+        interactableObject.onFixedUpdate();
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        isGrounded = true;
+        rbUnfreeze();
+    }
+
+    public void rbFreeze()
+    {
+        rb.constraints = RigidbodyConstraints.FreezeAll;
+    }
+
+    public void rbUnfreeze()
+    {
+        rb.constraints = RigidbodyConstraints.None;
     }
 }
 
@@ -53,6 +86,7 @@ public class interactableBase : MonoBehaviour
 public abstract class interactable
 {
     public interactableBase baseInteractable;
+    public Transform targetPosition;
     public interactable(interactableBase _baseInteractable)
     {
         baseInteractable = _baseInteractable;
@@ -61,6 +95,23 @@ public abstract class interactable
     public virtual void onEnter()
     {
         Debug.Log("Base Class Call");
+        targetPosition = baseInteractable.GetMain.transform;
+        baseInteractable.GetComponent<Collider>().enabled = false;
+    }
+
+    public virtual void onUpdate()
+    {
+        if (targetPosition != null)
+            baseInteractable.transform.position = Vector3.Lerp(baseInteractable.transform.position, targetPosition.position + (baseInteractable.GetMain.transform.forward * .5f), Time.deltaTime * 10f);
+    }
+
+    //Trigger for Grounded -
+    public virtual void onFixedUpdate()
+    {
+        if (!baseInteractable.GetSetGrounded)
+        {
+            baseInteractable.transform.position += Vector3.up * -2f * Time.deltaTime;
+        }
     }
 
     public virtual void onAction()
@@ -81,6 +132,9 @@ public class Book : interactable
     public override void onEnter()
     {
         Debug.Log("Book Class Call Enter");
+        targetPosition = baseInteractable.GetMain.transform;
+        baseInteractable.GetComponent<Collider>().enabled = false;
+        baseInteractable.rbFreeze();
     }
 
     public override void onAction()
@@ -90,6 +144,10 @@ public class Book : interactable
 
     public override void onExit()
     {
+        targetPosition = null;
+        baseInteractable.GetComponent<Collider>().enabled = true;
+        baseInteractable.GetSetGrounded = false;
+        //RigidBody Needed
         Debug.Log("Book Class Call Exit");
     }
 }

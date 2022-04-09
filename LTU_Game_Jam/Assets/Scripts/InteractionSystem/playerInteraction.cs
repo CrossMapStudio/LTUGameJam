@@ -8,6 +8,7 @@ public class playerInteraction : MonoBehaviour
     private Dictionary<int, interactableBase> interactableCollection;
     private Dictionary<int, bool> collisionTracking;
     private interactableBase currentlyHighlighted;
+    private interactableBase pickedUpItem;
     public LayerMask interactableLayer;
     public Vector3 pickupDistance;
 
@@ -21,7 +22,7 @@ public class playerInteraction : MonoBehaviour
 
     public void Update()
     {
-        if (interactableCollection.Count != 0)
+        if (interactableCollection.Count != 0 && pickedUpItem == null)
         {
             interactableBase current = null;
             float dot = 0.0f;
@@ -53,9 +54,18 @@ public class playerInteraction : MonoBehaviour
                 currentlyHighlighted.GetOnHover = false;
             currentlyHighlighted = null;
         }
-        if (Input.GetMouseButtonDown(0) && currentlyHighlighted != null)
+        if (Input.GetMouseButtonDown(0) && currentlyHighlighted != null || Input.GetMouseButtonDown(0) && pickedUpItem != null)
         {
-            currentlyHighlighted.GetInteractable.onEnter();
+            if (pickedUpItem == null)
+            {
+                pickedUpItem = currentlyHighlighted;
+                currentlyHighlighted.GetInteractable.onEnter();
+            }
+            else
+            {
+                pickedUpItem.GetInteractable.onExit();
+                pickedUpItem = null;
+            }
         }
     }
 
@@ -82,18 +92,18 @@ public class playerInteraction : MonoBehaviour
             }
         }
 
-        List<int> FuckYou = new List<int>();
+        List<int> tracker = new List<int>();
         foreach (KeyValuePair<int, bool> element in temporaryChecker)
         {
             if (element.Value == false)
             {
-                FuckYou.Add(element.Key);
+                tracker.Add(element.Key);
                 interactableCollection.Remove(element.Key);
             }
         }
 
         collisionTracking = temporaryChecker;
-        foreach(int element in FuckYou)
+        foreach(int element in tracker)
         {
             collisionTracking.Remove(element);
         }
