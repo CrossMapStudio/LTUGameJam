@@ -1,22 +1,39 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player_Move : MonoBehaviour
 {
+    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    /*~~~~~~~~~~~~~~~~~~~~~~~ PLAYER MOVEMENT ~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+    // Main components
     public CharacterController ctrl;
     public GameObject cam;
     public Camera mainCam;
 
+    // Movement modifiers
     public float walkSpeed;
     public float lookSensitivity;
 
+    // Movement values
     private float lookElevation = 0;
     private float acceleration = -9.81f;
     private float fallSpeed = 0.0f;
 
-    private bool talking;
+    // Number to multiply acceleration due to gravity by
+    public float gravityMultiplier;
+
+    // Stops player from moving or interacting further when talking with an NPC
+    public bool talking;
+
+    // The position that the camera focuses on when talking to an NPC (CURRENTLY UNUSED)
     private Vector3 focalPoint = Vector3.zero;
+
+    // Layermask for raycast (ignores the player)
+    public LayerMask ignorePlayer;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +54,7 @@ public class Player_Move : MonoBehaviour
         // Up and down rotation
         float ele = Input.GetAxis("Mouse Y") * lookSensitivity;
 
+
         // If player is not talking, they can move
         if (!talking)
         {
@@ -44,7 +62,7 @@ public class Player_Move : MonoBehaviour
             if (ctrl.isGrounded)
                 fallSpeed = 0.0f;
             else
-                fallSpeed += acceleration * Time.deltaTime;
+                fallSpeed += (acceleration * gravityMultiplier) * Time.deltaTime;
 
             // Look elevation is stored as a float due to the way Unity handles rotations (this is just easier)
             lookElevation = Mathf.Clamp(lookElevation -= ele, -89f, 89f);
@@ -57,21 +75,6 @@ public class Player_Move : MonoBehaviour
 
             // Rotates player's body side-to-side
             transform.eulerAngles += Vector3.up * azi;
-        }
-        // Player cannot move if they are talking
-        else
-        {
-            cam.transform.LookAt(focalPoint);
-        }
-    }
-
-    private void OnTriggerStay(Collider trigger)
-    {
-        // Talk with NPC if close enough and hitting interact key
-        if (trigger.tag == "NPC" && Input.GetAxis("Interact") == 1)
-        {
-            focalPoint = trigger.transform.position;
-            talking = true;
         }
     }
 }

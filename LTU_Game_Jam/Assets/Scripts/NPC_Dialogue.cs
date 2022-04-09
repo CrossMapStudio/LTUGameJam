@@ -5,5 +5,5 @@ using UnityEngine.UI;
 
 public class NPC_Dialogue : MonoBehaviour
 {
-
+    public Dialogue dialogue;
 }
