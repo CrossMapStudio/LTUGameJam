@@ -12,6 +12,11 @@ public class Player_Move : MonoBehaviour
     public float lookSensitivity;
 
     private float lookElevation = 0;
+    private float acceleration = -9.81f;
+    private float fallSpeed = 0.0f;
+
+    private bool talking;
+    private Vector3 focalPoint = Vector3.zero;
 
     // Start is called before the first frame update
     void Start()
@@ -22,19 +27,51 @@ public class Player_Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float hor = Input.GetAxis("Horizontal") * Time.deltaTime * walkSpeed;
-        float ver = Input.GetAxis("Vertical") * Time.deltaTime * walkSpeed;
+        // Movement axes
+        // Horizontal movement
+        float hor = Input.GetAxis("Horizontal") * walkSpeed;
+        // Forward movement
+        float ver = Input.GetAxis("Vertical") * walkSpeed;
+        // Rotation along the horizon
         float azi = Input.GetAxis("Mouse X") * lookSensitivity;
+        // Up and down rotation
         float ele = Input.GetAxis("Mouse Y") * lookSensitivity;
 
-        Vector3 move = new Vector3 (hor, 0f, ver);
+        // If player is not talking, they can move
+        if (!talking)
+        {
+            // Increase fall speed if ungrounded
+            if (ctrl.isGrounded)
+                fallSpeed = 0.0f;
+            else
+                fallSpeed += acceleration * Time.deltaTime;
 
-        lookElevation = Mathf.Clamp(lookElevation -= ele, -89f, 89f);
+            // Look elevation is stored as a float due to the way Unity handles rotations (this is just easier)
+            lookElevation = Mathf.Clamp(lookElevation -= ele, -89f, 89f);
 
-        ctrl.Move(transform.forward * ver + transform.right * hor);
+            // Moves character in all directions
+            ctrl.Move((transform.forward * ver + transform.right * hor + Vector3.up * fallSpeed) * Time.deltaTime);
 
-        cam.transform.rotation = Quaternion.Euler(lookElevation * lookSensitivity, 0, 0);
+            // Rotates camera
+            cam.transform.localEulerAngles = new Vector3(lookElevation, 0f, 0f);
 
-        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + (azi * lookSensitivity), 0);
+            // Rotates player's body side-to-side
+            transform.eulerAngles += Vector3.up * azi;
+        }
+        // Player cannot move if they are talking
+        else
+        {
+            cam.transform.LookAt(focalPoint);
+        }
+    }
+
+    private void OnTriggerStay(Collider trigger)
+    {
+        // Talk with NPC if close enough and hitting interact key
+        if (trigger.tag == "NPC" && Input.GetAxis("Interact") == 1)
+        {
+            focalPoint = trigger.transform.position;
+            talking = true;
+        }
     }
 }
