@@ -36,11 +36,6 @@ public class Dialogue_And_Tooltip : MonoBehaviour
     private Dialogue dialogue;
     private int currentDialogue = 0;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     // Update is called once per frame
     void Update()
@@ -84,7 +79,6 @@ public class Dialogue_And_Tooltip : MonoBehaviour
             // Disable text box if it is still active
             if (dialogueBox.activeInHierarchy)
                 dialogueBox.SetActive(false);
-
         }
         // Player cannot move if they are talking
         else

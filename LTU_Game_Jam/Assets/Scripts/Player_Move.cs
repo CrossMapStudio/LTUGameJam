@@ -35,10 +35,12 @@ public class Player_Move : MonoBehaviour
     // Layermask for raycast (ignores the player)
     public LayerMask ignorePlayer;
 
+    private Vector3 lastpos = Vector3.zero;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -46,14 +48,18 @@ public class Player_Move : MonoBehaviour
     {
         // Movement axes
         // Horizontal movement
-        float hor = Input.GetAxis("Horizontal") * walkSpeed;
+        float hor = Input.GetAxis("Horizontal");
         // Forward movement
-        float ver = Input.GetAxis("Vertical") * walkSpeed;
+        float ver = Input.GetAxis("Vertical");
         // Rotation along the horizon
         float azi = Input.GetAxis("Mouse X") * lookSensitivity;
         // Up and down rotation
         float ele = Input.GetAxis("Mouse Y") * lookSensitivity;
 
+
+        // Locks player's mouse in center of screen
+        if (Cursor.lockState != CursorLockMode.Locked)
+            Cursor.lockState = CursorLockMode.Locked;
 
         // If player is not talking, they can move
         if (!talking)
@@ -67,14 +73,28 @@ public class Player_Move : MonoBehaviour
             // Look elevation is stored as a float due to the way Unity handles rotations (this is just easier)
             lookElevation = Mathf.Clamp(lookElevation -= ele, -89f, 89f);
 
-            // Moves character in all directions
-            ctrl.Move((transform.forward * ver + transform.right * hor + Vector3.up * fallSpeed) * Time.deltaTime);
+            // Normalizes walk vector
+            Vector3 walkVector = new Vector3(hor, 0, ver).normalized;
+
+            // Makes sure walkVector behaves normally after being normalized
+            walkVector = new Vector3(walkVector.x * Mathf.Abs(hor), 0, walkVector.z * Mathf.Abs(ver));
+
+                //Vector3 walkVector = new Vector3(hor, 0, ver) * walkSpeed;
+
+                // Moves character in all directions
+                ctrl.Move((transform.TransformVector(walkVector * walkSpeed) + Vector3.up * fallSpeed) * Time.deltaTime);
 
             // Rotates camera
-            cam.transform.localEulerAngles = new Vector3(lookElevation, 0f, 0f);
+            cam.transform.eulerAngles = new Vector3(lookElevation, this.transform.eulerAngles.y, 0f);
 
             // Rotates player's body side-to-side
             transform.eulerAngles += Vector3.up * azi;
         }
+    }
+
+    private void LateUpdate()
+    {
+        // Positions camera
+        cam.transform.position = this.transform.position + Vector3.up * 0.5f;
     }
 }
