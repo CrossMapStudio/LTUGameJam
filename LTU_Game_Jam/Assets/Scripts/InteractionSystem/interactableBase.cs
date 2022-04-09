@@ -38,8 +38,10 @@ public class interactableBase : MonoBehaviour
         switch (type)
         {
             case interactableType.pickup:
+                interactableObject = new Pickup(this);
                 break;
             case interactableType.collectable:
+                interactableObject = new Collectable(this);
                 break;
             case interactableType.book:
                 interactableObject = new Book(this);
@@ -173,6 +175,9 @@ public class Pickup : interactable
     public Pickup(interactableBase _baseInteractable) : base(_baseInteractable) {}
     public override void onEnter()
     {
+        targetPosition = baseInteractable.GetMain.transform;
+        baseInteractable.GetComponent<Collider>().enabled = false;
+        baseInteractable.rbFreeze();
         Debug.Log("Pickup Class Call Enter");
     }
 
@@ -183,6 +188,10 @@ public class Pickup : interactable
 
     public override void onExit()
     {
+        targetPosition = null;
+        baseInteractable.GetComponent<Collider>().enabled = true;
+        baseInteractable.GetSetGrounded = false;
+        //RigidBody Needed
         Debug.Log("Pickup Class Call Exit");
     }
 }
@@ -192,6 +201,9 @@ public class Collectable : interactable
     public Collectable(interactableBase _baseInteractable) : base(_baseInteractable) { }
     public override void onEnter()
     {
+        targetPosition = baseInteractable.GetMain.transform;
+        baseInteractable.GetComponent<Collider>().enabled = false;
+        baseInteractable.rbFreeze();
         Debug.Log("Collectable Class Call Enter");
     }
 
@@ -202,6 +214,9 @@ public class Collectable : interactable
 
     public override void onExit()
     {
+        targetPosition = null;
+        baseInteractable.GetComponent<Collider>().enabled = true;
+        baseInteractable.GetSetGrounded = false;
         Debug.Log("Collectable Class Call Exit");
     }
 }
