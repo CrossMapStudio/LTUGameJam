@@ -34,7 +34,7 @@ public class interactableBase : MonoBehaviour
     [Header("Collectable")]
     public CollectableData Collectable_Data;
 
-    public void Awake()
+    public void Start()
     {
         main = Camera.main;
         renderer = GetComponent<MeshRenderer>();
@@ -48,6 +48,10 @@ public class interactableBase : MonoBehaviour
                 break;
             case interactableType.collectable:
                 interactableObject = new Collectable(this);
+                if (GameController.checkActionTracker(interactableObject.baseInteractable.Collectable_Data.itemID))
+                {
+                    gameObject.SetActive(false);
+                }
                 break;
             case interactableType.book:
                 interactableObject = new Book(this);
@@ -244,6 +248,7 @@ public class Collectable : interactable
     {
         Debug.Log("Collectable Class Call Action");
         inventoryPlayerController.addItemToInventory(baseInteractable.Collectable_Data);
+        GameController.addActionToTracker(baseInteractable.Collectable_Data.itemID);
         Object.Destroy(baseInteractable.gameObject);
     }
 

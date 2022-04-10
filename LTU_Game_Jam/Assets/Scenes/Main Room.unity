@@ -4745,6 +4745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c37c8f8420a9a242bc3621f60d94dd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ID: 
   sceneToChangeTo: 1
 --- !u!43 &115798446
 Mesh:
@@ -99316,7 +99317,7 @@ PrefabInstance:
     - target: {fileID: 3116119622720450853, guid: c1a71e47d37645b4ca599a3b4875883b,
         type: 3}
       propertyPath: walkSpeed
-      value: 4
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3116119622720450854, guid: c1a71e47d37645b4ca599a3b4875883b,
         type: 3}
