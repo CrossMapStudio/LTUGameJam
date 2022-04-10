@@ -669,6 +669,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2167444403011327767, guid: cc53f4cb80289db48a7f4f024d6d4c5b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: -3364348299880216126}
+    - target: {fileID: 2167444403011327767, guid: cc53f4cb80289db48a7f4f024d6d4c5b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: previousPage
+      objectReference: {fileID: 0}
+    - target: {fileID: 2167444403011327767, guid: cc53f4cb80289db48a7f4f024d6d4c5b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: bookUIDisplay, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 4580348743812689118, guid: cc53f4cb80289db48a7f4f024d6d4c5b,
         type: 3}
       propertyPath: m_Name
@@ -798,6 +813,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2167444403011327767, guid: cc53f4cb80289db48a7f4f024d6d4c5b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: -3364348299880216126}
+    - target: {fileID: 2167444403011327767, guid: cc53f4cb80289db48a7f4f024d6d4c5b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: nextPage
+      objectReference: {fileID: 0}
+    - target: {fileID: 2167444403011327767, guid: cc53f4cb80289db48a7f4f024d6d4c5b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: bookUIDisplay, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4580348743812689118, guid: cc53f4cb80289db48a7f4f024d6d4c5b,
         type: 3}

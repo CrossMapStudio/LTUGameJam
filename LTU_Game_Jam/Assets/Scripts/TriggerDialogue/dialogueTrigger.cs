@@ -16,6 +16,15 @@ public class dialogueTrigger : MonoBehaviour
     private dialogueUIController active;
 
     [SerializeField] private string subscriptionIDTriggerEvent;
+    [SerializeField] private string actionTrackerID;
+
+    private void Awake()
+    {
+        if (GameController.checkActionTracker(actionTrackerID))
+        {
+            enabled = false;
+        }
+    }
 
     private void FixedUpdate() {
     
@@ -51,6 +60,8 @@ public class dialogueTrigger : MonoBehaviour
         {
             GameController.callEvent(subscriptionIDTriggerEvent);
         }
+
+        GameController.addActionToTracker(actionTrackerID);
     }
 
     private void OnDrawGizmos()

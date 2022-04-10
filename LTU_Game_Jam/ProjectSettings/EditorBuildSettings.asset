@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Main Room.unity
+    guid: 01e03262875cafd46b97e7b092de1736
+  - enabled: 1
+    path: Assets/Scenes/Anxiety.unity
+    guid: 65341eee66cad204cbbfbfe8f2f0818c
   m_configObjects: {}
