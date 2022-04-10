@@ -103,9 +103,9 @@ public class Player_Move : MonoBehaviour
                 }
             }
 
-                // Moves character in all directions
-                if (!GameController.holdPlayer)
-                    ctrl.Move((transform.TransformVector(walkVector * walkSpeed) + Vector3.up * fallSpeed) * Time.deltaTime);
+            // Moves character in all directions
+            if (!GameController.holdPlayer)
+                ctrl.Move((transform.TransformVector(walkVector * walkSpeed) + Vector3.up * fallSpeed) * Time.deltaTime);
 
             // Rotates camera
             if (!GameController.holdPlayer)
@@ -122,7 +122,7 @@ public class Player_Move : MonoBehaviour
     {
         yield return new WaitForSeconds(stepTime);
 
-        if (vel > 1f)
+        if (vel > 1f && !GameController.holdPlayer)
         {
             aSource.pitch = Random.Range(0.625f, 0.675f);
             aSource.PlayOneShot(step);
