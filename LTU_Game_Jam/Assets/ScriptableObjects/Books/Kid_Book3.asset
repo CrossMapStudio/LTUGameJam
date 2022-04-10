@@ -12,5 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a34785ffb156180439fa53e98671f0c3, type: 3}
   m_Name: Kid_Book3
   m_EditorClassIdentifier: 
-  title: 
-  pages: []
+  title: The Way of the Will
+  pages:
+  - pageContent: 'I''m struggling to see your point of view on this.
+
+
+      You
+      can''t always be right, so stop acting like you are.
+
+
+      Can you please
+      keep it down? Our child has school tomorrow.'
