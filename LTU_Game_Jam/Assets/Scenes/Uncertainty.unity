@@ -29291,7 +29291,7 @@ PrefabInstance:
     - target: {fileID: 5626621961139787215, guid: 858814cd9b3050546bd82ba376d2bc28,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 100.51
+      value: 104.24
       objectReference: {fileID: 0}
     - target: {fileID: 5626621961139787215, guid: 858814cd9b3050546bd82ba376d2bc28,
         type: 3}
@@ -29301,7 +29301,7 @@ PrefabInstance:
     - target: {fileID: 5626621961139787215, guid: 858814cd9b3050546bd82ba376d2bc28,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.86
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 5626621961139787215, guid: 858814cd9b3050546bd82ba376d2bc28,
         type: 3}
@@ -29371,11 +29371,11 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
-  dialogue_data: {fileID: 11400000, guid: 5f22eae6dfb0440408016a8470e1c70f, type: 2}
+  dialogue_data: {fileID: 11400000, guid: 6f8772b24aa0b744c9e38a8200530035, type: 2}
   dialogueUIElement: {fileID: 8390350290999676024, guid: c9c0319fb502c29458651c6c2733d9df,
     type: 3}
-  subscriptionIDTriggerEvent: SouthGate
-  actionTrackerID: SouthGateTriggerDialogue
+  subscriptionIDTriggerEvent: 
+  actionTrackerID: 32323232322323
 --- !u!1 &817687264
 GameObject:
   m_ObjectHideFlags: 0
@@ -53833,6 +53833,126 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1001 &1572151116
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4998457308155891573, guid: 858814cd9b3050546bd82ba376d2bc28,
+        type: 3}
+      propertyPath: m_Name
+      value: Gabriel (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626621961139787215, guid: 858814cd9b3050546bd82ba376d2bc28,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626621961139787215, guid: 858814cd9b3050546bd82ba376d2bc28,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626621961139787215, guid: 858814cd9b3050546bd82ba376d2bc28,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626621961139787215, guid: 858814cd9b3050546bd82ba376d2bc28,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626621961139787215, guid: 858814cd9b3050546bd82ba376d2bc28,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -59.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626621961139787215, guid: 858814cd9b3050546bd82ba376d2bc28,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626621961139787215, guid: 858814cd9b3050546bd82ba376d2bc28,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 8.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626621961139787215, guid: 858814cd9b3050546bd82ba376d2bc28,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.8796504
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626621961139787215, guid: 858814cd9b3050546bd82ba376d2bc28,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626621961139787215, guid: 858814cd9b3050546bd82ba376d2bc28,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.4756209
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626621961139787215, guid: 858814cd9b3050546bd82ba376d2bc28,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626621961139787215, guid: 858814cd9b3050546bd82ba376d2bc28,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626621961139787215, guid: 858814cd9b3050546bd82ba376d2bc28,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 56.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626621961139787215, guid: 858814cd9b3050546bd82ba376d2bc28,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 858814cd9b3050546bd82ba376d2bc28, type: 3}
+--- !u!1 &1572151117 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998457308155891573, guid: 858814cd9b3050546bd82ba376d2bc28,
+    type: 3}
+  m_PrefabInstance: {fileID: 1572151116}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1572151118 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3886569323949660535, guid: 858814cd9b3050546bd82ba376d2bc28,
+    type: 3}
+  m_PrefabInstance: {fileID: 1572151116}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1572151119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1572151117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1714c7dc783dbeb4bb785c2fa28eef8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vCam: {fileID: 0}
+  lookAtTargetForDialogue: {fileID: 1572151118}
+  offset: {x: 0, y: 0, z: 0}
+  halfExtents: {x: 4, y: 4, z: 4}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  dialogue_data: {fileID: 11400000, guid: ca22bf348d6851f45b8180dc8eb4970f, type: 2}
+  dialogueUIElement: {fileID: 8390350290999676024, guid: c9c0319fb502c29458651c6c2733d9df,
+    type: 3}
+  subscriptionIDTriggerEvent: 
+  actionTrackerID: 1231212222222
 --- !u!43 &1573440249
 Mesh:
   m_ObjectHideFlags: 0
@@ -59565,7 +59685,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh1567414
+  m_Name: pb_Mesh1574498
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
