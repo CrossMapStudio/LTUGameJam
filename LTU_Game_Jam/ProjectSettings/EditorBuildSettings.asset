@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Anxiety.unity
     guid: 65341eee66cad204cbbfbfe8f2f0818c
+  - enabled: 1
+    path: Assets/Scenes/Nostalgia.unity
+    guid: efa8a5e82bf3c79439bd402a73bba9a9
+  - enabled: 1
+    path: Assets/Scenes/Uncertainty.unity
+    guid: 9d8c771da5f377a479b68c1f19bfe0e3
   m_configObjects: {}

@@ -80,6 +80,8 @@ public class GameController : MonoBehaviour
 
     public static bool checkActionTracker(string ID)
     {
+        if (actionTracker == null)
+            actionTracker = new HashSet<string>();
         if (actionTracker.Contains(ID))
         {
             return true;
