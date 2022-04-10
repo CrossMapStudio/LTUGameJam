@@ -65,6 +65,14 @@ public class GameController : MonoBehaviour
         gameEventHandler.Add(ID, action);
     }
 
+    public static void addEventAfterInvCheck(string invID, string ID, Action action)
+    {
+        if (inventoryPlayerController.checkInventory(invID))
+        {
+            addEvent(ID, action);
+        }
+    }
+
     public static void addActionToTracker(string ID)
     {
         actionTracker.Add(ID);

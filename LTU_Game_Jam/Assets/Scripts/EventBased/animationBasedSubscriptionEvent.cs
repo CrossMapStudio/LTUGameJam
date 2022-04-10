@@ -12,11 +12,24 @@ public class animationBasedSubscriptionEvent : MonoBehaviour
     private Action action;
 
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         anim = GetComponent<Animator>();
-        action = new Action(triggerAnimation);
-        GameController.addEvent(ID, action);
+    }
+
+    void Start()
+    {
+        if (invID == "")
+        {
+            action = new Action(triggerAnimation);
+            GameController.addEvent(ID, action);
+        }
+        else
+        {
+            action = new Action(triggerAnimation);
+            GameController.addEventAfterInvCheck(invID, ID, action);
+            GameController.callEventOnCheckInventory(invID, ID);
+        }
 
         if (invID != null)
         {
