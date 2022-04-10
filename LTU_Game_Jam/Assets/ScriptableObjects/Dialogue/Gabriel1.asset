@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 615af907e397add42b55c05f6d0fb349, type: 3}
-  m_Name: Ellie1
+  m_Name: Gabriel1
   m_EditorClassIdentifier: 
-  npcName: Ellie
+  npcName: Gabriel
   dialogues:
   - dialogueContent: They say there is a key to that door.
   - dialogueContent: But I don't see a reason to find it.
