@@ -56,11 +56,6 @@ public class Player_Move : MonoBehaviour
         // Up and down rotation
         float ele = Input.GetAxis("Mouse Y") * lookSensitivity;
 
-
-        // Locks player's mouse in center of screen
-        if (Cursor.lockState != CursorLockMode.Locked)
-            Cursor.lockState = CursorLockMode.Locked;
-
         // If player is not talking, they can move
         if (!talking)
         {

@@ -28,6 +28,11 @@ public class playerInteraction : MonoBehaviour
             float dot = 0.0f;
             foreach (KeyValuePair<int, interactableBase> element in interactableCollection)
             {
+                if (element.Value == null)
+                {
+                    continue;
+                }
+
                 float _dot = Vector3.Dot(main.transform.forward, (element.Value.transform.position - main.transform.position).normalized);
                 if (_dot > dot)
                 {

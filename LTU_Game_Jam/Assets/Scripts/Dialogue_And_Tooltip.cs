@@ -98,6 +98,7 @@ public class Dialogue_And_Tooltip : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.E))
             {
+                /*
                 if ((currentDialogue + 1) < dialogue.Text.Length)
                 {
                     currentDialogue++;
@@ -109,6 +110,7 @@ public class Dialogue_And_Tooltip : MonoBehaviour
                     dialogueBox.SetActive(false);
                     GetComponent<Player_Move>().talking = false;
                 }
+                */
             }
         }
     }
@@ -156,11 +158,11 @@ public class Dialogue_And_Tooltip : MonoBehaviour
         dialogueBox.SetActive(true);
 
         speakerText.text = npc.name;
-        dialogueText.text = dialogue.Text[0];
+        //dialogueText.text = dialogue.Text[0];
     }
 
     public void NextDialogue(int index)
     {
-        dialogueText.text = dialogue.Text[index];
+        //dialogueText.text = dialogue.Text[index];
     }
 }

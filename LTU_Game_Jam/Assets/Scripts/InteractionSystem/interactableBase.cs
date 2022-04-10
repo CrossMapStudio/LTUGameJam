@@ -28,6 +28,8 @@ public class interactableBase : MonoBehaviour
     public BookData Book_Data;
     public bookUIDisplay UIBookDataDisplay;
 
+    [Header("Collectable")]
+    public CollectableData Collectable_Data;
 
     public void Awake()
     {
@@ -210,6 +212,8 @@ public class Collectable : interactable
     public override void onAction()
     {
         Debug.Log("Collectable Class Call Action");
+        inventoryPlayerController.addItemToInventory(baseInteractable.Collectable_Data);
+        Object.Destroy(baseInteractable.gameObject);
     }
 
     public override void onExit()
