@@ -75,7 +75,14 @@ public class playerInteraction : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1) && pickedUpItem != null)
         {
-            pickedUpItem.GetInteractable.onAction();
+            if (pickedUpItem.GetInteractable.inAction)
+            {
+                pickedUpItem.GetInteractable.onActionExit();
+            }
+            else
+            {
+                pickedUpItem.GetInteractable.onAction();
+            }
         }
     }
 

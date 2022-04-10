@@ -100,6 +100,7 @@ public abstract class interactable
 {
     public interactableBase baseInteractable;
     public Transform targetPosition;
+    public bool inAction;
     public interactable(interactableBase _baseInteractable)
     {
         baseInteractable = _baseInteractable;
@@ -129,7 +130,13 @@ public abstract class interactable
 
     public virtual void onAction()
     {
+        inAction = true;
         Debug.Log("Base Class Call");
+    }
+
+    public virtual void onActionExit()
+    {
+
     }
 
     public virtual void onExit()
@@ -143,6 +150,7 @@ public class Book : interactable
 {
     public BookData data;
     private bookUIDisplay bookUI = null;
+
     public Book(interactableBase _baseInteractable) : base(_baseInteractable){
         data = baseInteractable.Book_Data;
     }
@@ -163,18 +171,35 @@ public class Book : interactable
             bookUI = Object.Instantiate(baseInteractable.UIBookDataDisplay,GameController.controller.currentCanvas.transform.position, Quaternion.identity, GameController.controller.currentCanvas.transform);
             bookUI.SetGetData = data;
             bookUI.setUI();
+            GameController.holdPlayer = true;
+            Cursor.lockState = CursorLockMode.Confined;
+            inAction = true;
         }
+    }
+
+    public override void onActionExit()
+    {
+        inAction = false;
+        GameController.holdPlayer = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        if (bookUI != null)
+            Object.Destroy(bookUI.gameObject);
     }
 
     public override void onExit()
     {
-        targetPosition = null;
-        baseInteractable.GetComponent<Collider>().enabled = true;
-        baseInteractable.GetSetGrounded = false;
-        if (bookUI != null)
-            Object.Destroy(bookUI.gameObject);
-        //RigidBody Needed
-        Debug.Log("Book Class Call Exit");
+        if (inAction != true)
+        {
+            targetPosition = null;
+            baseInteractable.GetComponent<Collider>().enabled = true;
+            baseInteractable.GetSetGrounded = false;
+            if (bookUI != null)
+                Object.Destroy(bookUI.gameObject);
+            //RigidBody Needed
+            Debug.Log("Book Class Call Exit");
+            GameController.holdPlayer = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 }
 

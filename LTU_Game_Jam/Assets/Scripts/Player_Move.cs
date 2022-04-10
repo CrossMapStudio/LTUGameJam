@@ -81,10 +81,13 @@ public class Player_Move : MonoBehaviour
                     ctrl.Move((transform.TransformVector(walkVector * walkSpeed) + Vector3.up * fallSpeed) * Time.deltaTime);
 
             // Rotates camera
-            cam.transform.eulerAngles = new Vector3(lookElevation, this.transform.eulerAngles.y, 0f);
+            if (!GameController.holdPlayer)
+            {
+                cam.transform.eulerAngles = new Vector3(lookElevation, this.transform.eulerAngles.y, 0f);
 
-            // Rotates player's body side-to-side
-            transform.eulerAngles += Vector3.up * azi;
+                // Rotates player's body side-to-side
+                transform.eulerAngles += Vector3.up * azi;
+            }
         }
     }
 
