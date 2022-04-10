@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 615af907e397add42b55c05f6d0fb349, type: 3}
   m_Name: Test_Dialogue
   m_EditorClassIdentifier: 
-  Text:
-  - This is a test NPC!
-  - If you are reading this, then it is working.
-  - Otherwise, try again!
+  npcName: Jake, From State Farm
+  dialogues:
+  - dialogueContent: They say there is a key to that door.
+  - dialogueContent: But I don't see a reason to find it.
+  - dialogueContent: We have already reached Nirvana.

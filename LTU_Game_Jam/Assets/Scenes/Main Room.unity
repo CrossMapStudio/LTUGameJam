@@ -64277,6 +64277,12 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!4 &1323098841 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3886569323949660535, guid: 858814cd9b3050546bd82ba376d2bc28,
+    type: 3}
+  m_PrefabInstance: {fileID: 5305099219312068972}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1328703549
 Mesh:
   m_ObjectHideFlags: 0
@@ -95250,6 +95256,34 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &2117932995 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4998457308155891573, guid: 858814cd9b3050546bd82ba376d2bc28,
+    type: 3}
+  m_PrefabInstance: {fileID: 5305099219312068972}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2117932999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2117932995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1714c7dc783dbeb4bb785c2fa28eef8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vCam: {fileID: 771667903}
+  lookAtTargetForDialogue: {fileID: 1323098841}
+  offset: {x: 0, y: 0, z: 0}
+  halfExtents: {x: 4, y: 4, z: 4}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  dialogue_data: {fileID: 11400000, guid: 5f22eae6dfb0440408016a8470e1c70f, type: 2}
+  dialogueUIElement: {fileID: 8390350290999676024, guid: c9c0319fb502c29458651c6c2733d9df,
+    type: 3}
 --- !u!1 &2123261889
 GameObject:
   m_ObjectHideFlags: 0
