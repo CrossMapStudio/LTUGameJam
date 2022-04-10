@@ -40,13 +40,18 @@ public class Player_Move : MonoBehaviour
     public AudioClip step;
     public float stepTime;
     private bool stepping = false;
+    // Ensures sound won't play if player is still
+    private float vel;
 
     // Start is called before the first frame update
     void Awake()
     {
+        // Locks Cursor
         Cursor.lockState = CursorLockMode.Locked;
+
+        // Finds camera
         if (cam == null)
-            cam = GameObject.FindGameObjectWithTag("Main Camera");
+            cam = GameObject.FindGameObjectWithTag("MainCamera");
         if (mainCam == null)
             mainCam = cam.GetComponent<Camera>();
     }
@@ -86,7 +91,7 @@ public class Player_Move : MonoBehaviour
             walkVector = new Vector3(walkVector.x * Mathf.Abs(hor), 0, walkVector.z * Mathf.Abs(ver));
 
             // Checks if player is moving
-            float vel = ctrl.velocity.magnitude;
+            vel = ctrl.velocity.magnitude;
 
             // If player is grounded and moving, steps will occur
             if (isGrounded && vel > 1f)
@@ -97,9 +102,6 @@ public class Player_Move : MonoBehaviour
                     StartCoroutine(PlayFootstep());
                 }
             }
-            // Steps will stop if player stops moving
-            else
-                StopCoroutine(PlayFootstep());
 
                 // Moves character in all directions
                 if (!GameController.holdPlayer)
@@ -117,8 +119,16 @@ public class Player_Move : MonoBehaviour
     }
 
     IEnumerator PlayFootstep()
-    { yield return new WaitForSeconds(stepTime);
-        aSource.pitch = Random.Range(0.625f, 0.675f); aSource.PlayOneShot(step); stepping = false; }
+    {
+        yield return new WaitForSeconds(stepTime);
+
+        if (vel > 1f)
+        {
+            aSource.pitch = Random.Range(0.625f, 0.675f);
+            aSource.PlayOneShot(step);
+        }
+        stepping = false;
+    }
 
     private void LateUpdate()
     {
