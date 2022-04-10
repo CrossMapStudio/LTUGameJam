@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 3116119622720450851}
   - component: {fileID: 3116119622720450852}
   - component: {fileID: 3116119622720450853}
-  - component: {fileID: 3116119622720450854}
   - component: {fileID: 3116119622720450863}
   - component: {fileID: 2404098853381456025}
   m_Layer: 6
@@ -53,7 +52,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3116119622720450855}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -135,36 +134,13 @@ MonoBehaviour:
   ctrl: {fileID: 3116119622720450852}
   cam: {fileID: 0}
   mainCam: {fileID: 0}
-  walkSpeed: 8
+  walkSpeed: 4
   lookSensitivity: 1
   gravityMultiplier: 4
   talking: 0
   ignorePlayer:
     serializedVersion: 2
     m_Bits: 55
---- !u!114 &3116119622720450854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3116119622720450855}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee9d2653b773c3f4c895a32ba0af1da2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  mainCam: {fileID: 0}
-  talking: 0
-  ignorePlayer:
-    serializedVersion: 2
-    m_Bits: 55
-  toolTip: {fileID: 0}
-  dialogueBox: {fileID: 0}
-  speakerText: {fileID: 0}
-  dialogueText: {fileID: 0}
-  continueText: {fileID: 0}
 --- !u!114 &3116119622720450863
 MonoBehaviour:
   m_ObjectHideFlags: 0
