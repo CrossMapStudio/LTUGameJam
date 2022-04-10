@@ -5,6 +5,7 @@ using UnityEngine;
 public class inventoryPlayerController : MonoBehaviour
 {
     private static Dictionary<string, CollectableData> inventory;
+    public static Dictionary<string, CollectableData> invGet { get { return inventory; } }
 
     //Do All UI Herer??
     public Transform inventoryUIContainer;

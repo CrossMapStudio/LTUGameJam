@@ -36,6 +36,11 @@ public class GameController : MonoBehaviour
         {
             SceneManager.LoadScene(1);
         }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+        }
     }
 
     public static void callEvent(string ID)

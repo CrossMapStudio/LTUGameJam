@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcName: Gabriel
   dialogues:
-  - dialogueContent: They say there is a key to that door.
-  - dialogueContent: But I don't see a reason to find it.
+  - dialogueContent: They say there is 3 Shards to open that door.
+  - dialogueContent: But I don't see a reason to find them.
   - dialogueContent: We have already reached Nirvana.

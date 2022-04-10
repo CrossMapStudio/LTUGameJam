@@ -69861,7 +69861,7 @@ PrefabInstance:
     - target: {fileID: 1546462824027517417, guid: 42650c99ca453f14399a0c4c3a80a1ec,
         type: 3}
       propertyPath: sceneToChangeTo
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1546462824027517418, guid: 42650c99ca453f14399a0c4c3a80a1ec,
         type: 3}
