@@ -15,6 +15,8 @@ public class dialogueTrigger : MonoBehaviour
     [SerializeField] private dialogueUIController dialogueUIElement;
     private dialogueUIController active;
 
+    [SerializeField] private string subscriptionIDTriggerEvent;
+
     private void FixedUpdate() {
     
         var col = Physics.OverlapBox(transform.position + offset, halfExtents, Quaternion.identity, playerLayer);
@@ -28,6 +30,7 @@ public class dialogueTrigger : MonoBehaviour
 
     private void startDialogue()
     {
+        GameController.holdPlayer = true;
         Cursor.lockState = CursorLockMode.Confined;
         active = Instantiate(dialogueUIElement, GameController.controller.currentCanvas.transform.position, Quaternion.identity, GameController.controller.currentCanvas.transform);
         active.end = new dialogueUIController.dialogueEnd(dialogueEnd);
@@ -38,10 +41,16 @@ public class dialogueTrigger : MonoBehaviour
 
     private void dialogueEnd()
     {
+        GameController.holdPlayer = false;
         //Give control back to the player and camera -> Remove the box ->
         Destroy(active);
-        vCam.LookAt = null;
         Cursor.lockState = CursorLockMode.Locked;
+        vCam.LookAt = null;
+
+        if (subscriptionIDTriggerEvent != null)
+        {
+            GameController.callEvent(subscriptionIDTriggerEvent);
+        }
     }
 
     private void OnDrawGizmos()

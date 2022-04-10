@@ -77,7 +77,8 @@ public class Player_Move : MonoBehaviour
                 //Vector3 walkVector = new Vector3(hor, 0, ver) * walkSpeed;
 
                 // Moves character in all directions
-                ctrl.Move((transform.TransformVector(walkVector * walkSpeed) + Vector3.up * fallSpeed) * Time.deltaTime);
+                if (!GameController.holdPlayer)
+                    ctrl.Move((transform.TransformVector(walkVector * walkSpeed) + Vector3.up * fallSpeed) * Time.deltaTime);
 
             // Rotates camera
             cam.transform.eulerAngles = new Vector3(lookElevation, this.transform.eulerAngles.y, 0f);

@@ -52,6 +52,7 @@ public class inventoryPlayerController : MonoBehaviour
 
     public void showInventory()
     {
+        GameController.holdPlayer = true;
         if (inventory.Count != 0)
         {
             foreach (KeyValuePair<string, CollectableData> element in inventory)
@@ -67,6 +68,7 @@ public class inventoryPlayerController : MonoBehaviour
 
     public void closeInventory()
     {
+        GameController.holdPlayer = false;
         for (int i = 0; i < inventoryUIContainer.childCount; i++)
         {
             Destroy(inventoryUIContainer.GetChild(i).gameObject);

@@ -13,6 +13,14 @@ public class dialogueUIController : MonoBehaviour
     public delegate void dialogueEnd();
     public dialogueEnd end;
 
+    private Animator anim;
+    [SerializeField] private string animationToPlayOnIndex = "dialogueIndexChange";
+
+    private void Awake()
+    {
+        anim = GetComponent<Animator>();
+    }
+
     public void setUI()
     {
         npcName.text = dialogue_data.npcName;
@@ -29,6 +37,7 @@ public class dialogueUIController : MonoBehaviour
         }
         else
         {
+            anim.Play(animationToPlayOnIndex, 0, 0f);
             setUI();
         }
     }

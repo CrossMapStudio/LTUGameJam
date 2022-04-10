@@ -24,6 +24,9 @@ public class interactableBase : MonoBehaviour
     }
     [SerializeField] private interactableType type;
 
+    [Header("General")]
+    public Vector3 pickupOffset;
+
     [Header("Book")]
     public BookData Book_Data;
     public bookUIDisplay UIBookDataDisplay;
@@ -36,7 +39,8 @@ public class interactableBase : MonoBehaviour
         main = Camera.main;
         renderer = GetComponent<MeshRenderer>();
         rb = GetComponent<Rigidbody>();
-        renderer.material.color = Color.blue;
+        if (renderer != null)
+            renderer.material.color = Color.blue;
         switch (type)
         {
             case interactableType.pickup:
@@ -57,11 +61,13 @@ public class interactableBase : MonoBehaviour
     {
         if (onHover)
         {
-            renderer.material.color = Color.cyan;
+            if (renderer != null)
+                renderer.material.color = Color.cyan;
         }
         else
         {
-            renderer.material.color = Color.white;
+            if (renderer != null)
+                renderer.material.color = Color.white;
         }
 
         interactableObject.onUpdate();
@@ -109,7 +115,7 @@ public abstract class interactable
     public virtual void onUpdate()
     {
         if (targetPosition != null)
-            baseInteractable.transform.position = Vector3.Lerp(baseInteractable.transform.position, targetPosition.position + (baseInteractable.GetMain.transform.forward * .5f), Time.deltaTime * 10f);
+            baseInteractable.transform.position = Vector3.Lerp(baseInteractable.transform.position, targetPosition.position + baseInteractable.pickupOffset + (baseInteractable.GetMain.transform.forward * .5f), Time.deltaTime * 10f);
     }
 
     //Trigger for Grounded -

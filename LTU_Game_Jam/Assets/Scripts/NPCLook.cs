@@ -15,7 +15,7 @@ public class NPCLook : MonoBehaviour
     void Update()
     {
         float param = Vector3.Dot(transform.forward, (player.position - transform.position).normalized);
-        if (param >= .5f)
+        if (param >= .3f)
         {
             var targetRotation = Quaternion.LookRotation(player.position - headBone.position);
             // Smoothly rotate towards the target point.
