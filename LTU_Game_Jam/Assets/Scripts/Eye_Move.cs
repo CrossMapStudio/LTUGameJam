@@ -15,7 +15,7 @@ public class Eye_Move : MonoBehaviour
     void Update()
     {
         // Rotates the eye toward the player from any angle (borrowed from NPCLook)
-        var targetRotation = Quaternion.LookRotation((player.position + Vector3.up * 0.25f) - eye.position);
+        var targetRotation = Quaternion.LookRotation((player.position + Vector3.up * 0.5f) - eye.position);
         // Smoothly rotate towards the target point.
         eye.rotation = Quaternion.Slerp(eye.rotation, targetRotation * Quaternion.Euler(Vector3.up * -90), Time.deltaTime * 15f);
     }
