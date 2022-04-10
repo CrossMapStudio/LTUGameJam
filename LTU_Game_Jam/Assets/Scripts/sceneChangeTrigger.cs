@@ -8,6 +8,7 @@ public class sceneChangeTrigger : MonoBehaviour
     public string ID;
     public int sceneToChangeTo;
     bool disable;
+    public CollectableData data;
 
     public void Awake()
     {
@@ -24,6 +25,8 @@ public class sceneChangeTrigger : MonoBehaviour
             if (other.tag == "Player")
             {
                 GameController.addActionToTracker(ID);
+                if (data != null)
+                    inventoryPlayerController.addItemToInventory(data);
                 SceneManager.LoadScene(sceneToChangeTo);
             }
         }
