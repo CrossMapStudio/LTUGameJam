@@ -35,6 +35,17 @@ public class inventoryPlayerController : MonoBehaviour
         return false;
     }
 
+    public static bool checkInventory(string ID)
+    {
+        if (inventory == null)
+            inventory = new Dictionary<string, CollectableData>();
+        if (inventory.ContainsKey(ID))
+        {
+            return true;
+        }
+        return false;
+    }
+
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.I))

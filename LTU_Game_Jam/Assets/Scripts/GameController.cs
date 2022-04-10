@@ -24,6 +24,7 @@ public class GameController : MonoBehaviour
         if (actionTracker == null)
             actionTracker = new HashSet<string>();
     }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha0))
@@ -47,8 +48,20 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public static void callEventOnCheckInventory(string invID, string eventID)
+    {
+        if (inventoryPlayerController.checkInventory(invID))
+        {
+            callEvent(eventID);
+        }
+    }
+
     public static void addEvent(string ID, Action action)
     {
+        if (gameEventHandler.ContainsKey(ID))
+        {
+            return;
+        }
         gameEventHandler.Add(ID, action);
     }
 
