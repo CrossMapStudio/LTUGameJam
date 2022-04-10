@@ -35,12 +35,20 @@ public class Player_Move : MonoBehaviour
     // Layermask for raycast (ignores the player)
     public LayerMask ignorePlayer;
 
-    private Vector3 lastpos = Vector3.zero;
+    // Footstep sound player
+    public AudioSource aSource;
+    public AudioClip step;
+    public float stepTime;
+    private bool stepping = false;
 
     // Start is called before the first frame update
     void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        if (cam == null)
+            cam = GameObject.FindGameObjectWithTag("Main Camera");
+        if (mainCam == null)
+            mainCam = cam.GetComponent<Camera>();
     }
 
     // Update is called once per frame
@@ -59,8 +67,11 @@ public class Player_Move : MonoBehaviour
         // If player is not talking, they can move
         if (!talking)
         {
+            // Ground check
+            bool isGrounded = ctrl.isGrounded;
+
             // Increase fall speed if ungrounded
-            if (ctrl.isGrounded)
+            if (isGrounded)
                 fallSpeed = 0.0f;
             else
                 fallSpeed += (acceleration * gravityMultiplier) * Time.deltaTime;
@@ -74,7 +85,21 @@ public class Player_Move : MonoBehaviour
             // Makes sure walkVector behaves normally after being normalized
             walkVector = new Vector3(walkVector.x * Mathf.Abs(hor), 0, walkVector.z * Mathf.Abs(ver));
 
-                //Vector3 walkVector = new Vector3(hor, 0, ver) * walkSpeed;
+            // Checks if player is moving
+            float vel = ctrl.velocity.magnitude;
+
+            // If player is grounded and moving, steps will occur
+            if (isGrounded && vel > 1f)
+            {
+                if (!stepping)
+                {
+                    stepping = true;
+                    StartCoroutine(PlayFootstep());
+                }
+            }
+            // Steps will stop if player stops moving
+            else
+                StopCoroutine(PlayFootstep());
 
                 // Moves character in all directions
                 if (!GameController.holdPlayer)
@@ -90,6 +115,10 @@ public class Player_Move : MonoBehaviour
             }
         }
     }
+
+    IEnumerator PlayFootstep()
+    { yield return new WaitForSeconds(stepTime);
+        aSource.pitch = Random.Range(0.625f, 0.675f); aSource.PlayOneShot(step); stepping = false; }
 
     private void LateUpdate()
     {
